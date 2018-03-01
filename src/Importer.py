@@ -29,7 +29,7 @@ class Importer:
                     ride = Ride(counter, start, end, s, f)
                     rides.append(ride)
 
-                    counter =+ 1
+                    counter += 1
 
                 file.close()
 

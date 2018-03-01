@@ -36,11 +36,6 @@ for frame in range(timeSteps):
         if car.update(frame, rides[i]):
             i += 1
 
-for car in cars:
-    print(car.previousRides)
-    for i, car in enumerate(cars):
-        car.update(frame, rides[i])
-
 exporter = Exporter(sys.argv[2])
 exporter.setVehicles(cars)
 exporter.exportSubmission()
