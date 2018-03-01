@@ -50,7 +50,7 @@ for infile in datasets.keys():
 \t{} starting on time bonus
 \t{} time steps""".format(rows, columns, numCars, numRides, timelyBonus, timeSteps))
 
-    rides.sort(key=lambda ride: ride.startTime, reverse=False)
+    rides.sort(key=lambda ride: (ride.startTime, ride.distance()), reverse=False)
 
     cars = []
 
