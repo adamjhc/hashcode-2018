@@ -1,6 +1,7 @@
 #!/bin/env python3
 
 import sys
+from src.Ride import Ride
 from src.Importer import Importer
 
 if len(sys.argv) < 2:
@@ -11,5 +12,19 @@ importer = Importer(sys.argv[1])
 
 rows, columns, vehicles, numRides, timelyBonus, timeSteps, rides = importer.importDataSet()
 
-print("{} rows, {} columns, {} vehicles, {} rides, {} starting on time bonus, {} time steps.".format(
-    rows, columns, vehicles, numRides, timelyBonus, timeSteps))
+
+print("{} rows, {} columns, {} vehicles, {} rides, {} starting on time bonus, {} time steps.".format(rows, columns, vehicles, numRides, timelyBonus, timeSteps))
+map = Map(rows,columns)
+
+# not sure if works
+sortedRides = sorted(rides, key=Ride.startTime)
+
+while (map.timeFrame < timeSteps):
+    availableCars = map.getAvailableCars()
+    if(availableCars.length > 0):
+        for ride in sortedRides:
+            if(availableCars.length > 0):
+                availableCars[0].giveJob()
+                del availableCars[0]
+            sortedRides.remove(ride)
+    map.nextTimeFrame()
