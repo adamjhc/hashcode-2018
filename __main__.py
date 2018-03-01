@@ -5,7 +5,6 @@ import sys
 from src.Importer import Importer
 from src.Exporter import Exporter
 from src.Car import Car
-from src.Map import Map
 
 if len(sys.argv) < 3:
     print("Usage: __main__.py <dataset> <outfile> where <dataset> is the path to the desired data set and <outfile> is the path to the output")
