@@ -1,7 +1,7 @@
 class Intersection():
-    x = None
-    y = None
+    row: int = None
+    column: int = None
 
-    def __init__(self, row, column):
-        self.x = row
-        self.y = column
+    def __init__(self, row: int, column: int):
+        self.row = row
+        self.column = column
