@@ -7,6 +7,6 @@ if len(sys.argv) < 2:
     print("Usage: __main__.py <dataset> where <dataset> is the path to the desired data set")
     sys.exit()
 
-R, C, F, N, B, T, rides = importDataSet(sys.argv[1])
+rows, columns, vehicles, rides, timelyBonus, timeSteps, rides = importDataSet(sys.argv[1])
 
-print("{} rows, {} columns, {} vehicles, {} rides, {} starting on time bonus, {} time steps.".format(R, C, F, N, B, T))
+print("{} rows, {} columns, {} vehicles, {} rides, {} starting on time bonus, {} time steps.".format(rows, columns, vehicles, rides, timelyBonus, timeSteps))
