@@ -1,0 +1,6 @@
+Main simulation class which loads an in file,
+generates a map via a map class which takes most of the information from the .in files,
+map class contains car objects in a list,
+each car will be given a queue of directions to get from A to B
+the car class will also store the car's current Location
+the map will have a function nextTimeFrame() which causes each car to move in the direction at the front of queue 
