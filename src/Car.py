@@ -66,3 +66,11 @@ class Car():
 
             # def moveWest(self):
             #     self.currentLocation.column -= 1
+
+    def getSubmissionLine(self) -> str:
+        line: str = str(len(self.previousRides))
+
+        for ride in self.previousRides:
+            line += " {:d}".format(ride.id)
+
+        return line
