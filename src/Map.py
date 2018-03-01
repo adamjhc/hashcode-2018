@@ -9,5 +9,10 @@ class Map(object):
 
     def nextTimeFrame():
         self.timeFrame += 1
-        for car in carList:
+        for car in self.carList:
             car.move()
+
+    def giveCarJob(carID, xAndYCoordinate):
+        for car in self.carList:
+            if (car.iDNumber == carID):
+                car.sendCarToLocation(xAndYCoordinate)

@@ -2,9 +2,10 @@ class Car(object):
     """two """
     coordinates = None
     drivingQueue = []
-    def __init__(self, coordinates):
-        super(Car, self).__init__()
+    iDNumber = None
+    def __init__(self, coordinates, iDNumber):
         self.coordinates = coordinates
+        self.iDNumber = iDNumber
 
     def sendCarToLocation(xAndY):
         xMovement = xAndY[0] - coordinates[0]
