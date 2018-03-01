@@ -1,20 +1,18 @@
 class Map():
     """docstring for Map. take array containing height and width [h,y], it will also take a list of cars """
-    height = None
-    width = None
-    carList = None
-    timeFrame = 0
+    heightAndWidth = None
+    carList: list = None
+    timeFrame: int = 0
 
-    def __init__(self, height, width):
-        self.height = height
-        self.width = width
+    def __init__(self, heightAndWidth):
+        self.heightAndWidth = heightAndWidth
 
     def nextTimeFrame():
         self.timeFrame += 1
         for car in self.carList:
             car.move()
 
-    def giveCarJob(carID, xAndYCoordinate):
+    def giveCarJob(carID: int, location: "Location"):
         for car in self.carList:
-            if (car.iDNumber == carID):
-                car.sendCarToLocation(xAndYCoordinate)
+            if (car.id == carID):
+                car.sendCarToLocation(location)

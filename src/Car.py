@@ -1,16 +1,21 @@
+from src.Direction import Direction
+from src.Ride import Ride
+from src.Location import Location
+
 class Car(object):
     """two """
-    currentLocation = None
-    drivingQueue = []
-    iDNumber = None
+    currentLocation: "Location" = None
+    drivingQueue: list = []
+    id: int = None
 
-    def __init__(self, location, iDNumber):
+    def __init__(self, location: "Location", id: int):
         self.currentLocation = location
-        self.iDNumber = iDNumber
+        self.id = id
 
-    def sendCarToLocation(end_location):
-        xMovement = endLocation.row - self.currentLocation.row
-        yMovement = endLocation.column - self.currentLocation.column
+    def sendCarToLocation(self, location: "Location"):
+        xMovement: int = location.row - self.currentLocation.row
+        yMovement: int = location.column - self.currentLocation.column
+
         if(xMovement > 0):
             for i in xMovement:
                 self.drivingQueue.append(2)
@@ -24,41 +29,42 @@ class Car(object):
             for i in yMovement:
                 self.drivingQueue.append(3)
 
-    def getDistanceToIntersection(self, intersection):
-        return abs(location.row - intersection.row) + abs(location.column - intersection.column)
+    def canFinishRide(self, ride "Ride", timeLeft: int) -> int:
+        distance: int = self.currentLocation.distanceTo(ride.startLocation)
 
-    def canFinishRide(self, ride, timeLeft):
-        distance = self.getDistanceToIntersection(ride.start_location)
-        timeRequired = ride.end_time - ride.start_time
-
-        frames = (distance + time) - timeLeft
+        frames: int = (distance + ride.time()) - timeLeft
 
         return frames > 0
 
-    def getWeight(self, ride, timeLeft):
-        if canFinishRide(ride, timeLeft):
+    def getWeight(self, ride: "Ride", timeLeft: int) -> int:
+        if self.canFinishRide(ride, timeLeft):
             return 0
 
-        distanceToRide = self.getDistanceToIntersection(ride.start_location)
-        timeForRide = ride.end_time - ride.start_time
+        distanceToRide = self.currentLocation.distanceTo(ride.startLocation)
 
-        return distanceToRide - timeForRide
+        return distanceToRide - ride.time()
 
 
-    def move():
+    def move(self):
         if (self.drivingQueue != []):
-            # drive north
-            if(self.drivingQueue[0] == 1):
-                self.coordinates.row = self.coordinates.row + 1
+            nextInstruction = self.drivingQueue[0]
+            if(nextInstruction == Direction.NORTH):
+                self.moveNorth()
+            if(nextInstruction == Direction.EAST):
+                self.moveEast()
+            if(nextInstruction == Direction.SOUTH):
+                self.moveSouth()
+            if(nextInstruction == Direction.WEST):
+                self.moveWest()
 
-            # drive east
-            if(self.drivingQueue[0] == 2):
-                self.coordinates.column = self.coordinates.column + 1
+    def moveNorth(self):
+        self.currentLocation.row += 1
 
-            # drive south
-            if(self.drivingQueue[0] == 3):
-                self.coordinates.column = self.coordinates.column - 1
+    def moveEast(self):
+        self.currentLocation.column += 1
 
-            # drive west
-            if(self.drivingQueue[0] == 4):
-                self.coordinates.row = self.coordinates.row - 1
+    def moveSouth(self):
+        self.currentLocation.row -= 1
+
+    def moveWest(self):
+        self.currentLocation.column -= 1

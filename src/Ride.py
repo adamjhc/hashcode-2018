@@ -17,3 +17,6 @@ class Ride():
 
     def distance(self) -> int:
         return self.startLocation.distanceTo(self.endLocation)
+
+    def time(self) -> int:
+        return self.endTime - self.startTime
