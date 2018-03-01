@@ -9,8 +9,8 @@ class Car(object):
         self.iDNumber = iDNumber
 
     def sendCarToLocation(end_location):
-        xMovement = endLocation.x - self.currentLocation.x
-        yMovement = endLocation.y - self.currentLocation.y
+        xMovement = endLocation.row - self.currentLocation.row
+        yMovement = endLocation.column - self.currentLocation.column
         if(xMovement > 0):
             for i in xMovement:
                 self.drivingQueue.append(2)
@@ -49,16 +49,16 @@ class Car(object):
         if (self.drivingQueue != []):
             # drive north
             if(self.drivingQueue[0] == 1):
-                self.coordinates[1] = self.coordinates[1] + 1
+                self.coordinates.column = self.coordinates.column + 1
 
             # drive east
             if(self.drivingQueue[0] == 2):
-                self.coordinates.x = self.coordinates.x + 1
+                self.coordinates.row = self.coordinates.row + 1
 
             # drive south
             if(self.drivingQueue[0] == 3):
-                self.coordinates[1] = self.coordinates[1] - 1
+                self.coordinates.column = self.coordinates.column - 1
 
             # drive west
             if(self.drivingQueue[0] == 4):
-                self.coordinates.x = self.coordinates.x - 1
+                self.coordinates.row = self.coordinates.row - 1
