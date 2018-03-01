@@ -2,4 +2,10 @@
 Car Location (x,y co-ordinates):
   Array(x-cordinate, y co-ordinate)
   (x,y)
-  
+
+Car Directions:
+  List of integers of either 1,2,3,4
+  1 North
+  2 East
+  3 South
+  4 West
