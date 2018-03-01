@@ -15,22 +15,15 @@ importer = Importer(sys.argv[1])
 
 rows, columns, numCars, numRides, timelyBonus, timeSteps, rides = importer.importDataSet()
 
-print("{} rows, {} columns, {} cars, {} rides, {} starting on time bonus, {} time steps.".format(
-    rows, columns, numCars, numRides, timelyBonus, timeSteps))
+print("""{} rows
+{} columns
+{} cars
+{} rides
+{} starting on time bonus
+{} time steps
+""".format(rows, columns, numCars, numRides, timelyBonus, timeSteps))
 
 rides.sort(key=lambda ride: ride.startTime, reverse=True)
-
-# map = Map(rows,columns)
-
-# while (map.timeFrame < timeSteps):
-#     availableCars = map.getAvailableCars()
-#     if(availableCars.length > 0):
-#         for ride in sortedRides:
-#             if(availableCars.length > 0):
-#                 availableCars[0].giveJob()
-#                 del availableCars[0]
-#             sortedRides.remove(ride)
-#     map.nextTimeFrame()
 
 cars = []
 
