@@ -3,10 +3,7 @@
 import sys
 from src.Ride import Ride
 from src.Importer import Importer
-
-from src.Car import Car
-from src.Ride import Ride
-
+from src.Map import Map
 
 if len(sys.argv) < 2:
     print("Usage: __main__.py <dataset> where <dataset> is the path to the desired data set")
@@ -19,11 +16,10 @@ rows, columns, cars, numRides, timelyBonus, timeSteps, rides = importer.importDa
 print("{} rows, {} columns, {} cars, {} rides, {} starting on time bonus, {} time steps.".format(
     rows, columns, cars, numRides, timelyBonus, timeSteps))
 
+map = Map(rows, columns)
+
+# not sure if works
 sortedRides = sorted(rides, key=Ride.startTime)
-
-
-print("{} rows, {} columns, {} vehicles, {} rides, {} starting on time bonus, {} time steps.".format(
-    rows, columns, vehicles, numRides, timelyBonus, timeSteps))
 
 # map = Map(rows,columns)
 
@@ -47,6 +43,6 @@ for frame in range(timeSteps):
             car.addRide(sortedRides[i])
             i += 1
         else:
-            if currentTime == car.timeWhenAvailable:
+            if frame == car.timeWhenAvailable:
                 car.update(frame, sortedRides[i])
                 i += 1
