@@ -2,69 +2,67 @@ from src.Direction import Direction
 from src.Ride import Ride
 from src.Intersection import Intersection
 
-class Car(object):
-    """two """
-    currentLocation: "Intersection" = None
-    drivingQueue: list = []
-    id: int = None
 
-    def __init__(self, location: "Intersection", id: int):
-        self.currentLocation = location
+class Car():
+    location: "Intersection" = None
+    ride = None
+    previousRides = []
+    timeWhenAvailable = None
+
+    def __init__(self, id: int):
+        self.location = Intersection(0, 0)
         self.id = id
 
-    def sendCarToLocation(self, location: "Intersection"):
-        xMovement: int = location.row - self.currentLocation.row
-        yMovement: int = location.column - self.currentLocation.column
+    def isAvailable(self):
+        return ride == None
 
-        if(xMovement > 0):
-            for _ in xMovement:
-                self.drivingQueue.append(2)
-        if(xMovement < 0):
-            for _ in xMovement:
-                self.drivingQueue.append(4)
-        if(yMovement > 0):
-            for _ in yMovement:
-                self.drivingQueue.append(1)
-        if(yMovement > 0):
-            for _ in yMovement:
-                self.drivingQueue.append(3)
+    def addRide(self, ride, currentTime):
+        self.ride = ride
+        location = ride.endLocation
 
-    def canFinishRide(self, ride: "Ride", timeLeft: int) -> int:
-        distance: int = self.currentLocation.distanceTo(ride.startLocation)
+        distance: int = self.location.distanceTo(ride.startLocation)
+        return currentTime + distance + ride.time()
 
-        frames: int = (distance + ride.time()) - timeLeft
+    def update(self, currentTime, nextRide):
+        if currentTime == self.timeWhenAvailable:
+            previousRides.append(ride.id)
+            self.addRide(nextRide)
 
-        return frames > 0
+            # def canFinishRide(self, ride: "Ride", timeLeft: int) -> int:
+            #     distance: int = self.currentLocation.distanceTo(ride.startLocation)
 
-    def getWeight(self, ride: "Ride", timeLeft: int) -> int:
-        if self.canFinishRide(ride, timeLeft):
-            return 0
+            #     frames: int = (distance + ride.time()) - timeLeft
 
-        distanceToRide = self.currentLocation.distanceTo(ride.startLocation)
+            #     return frames > 0
 
-        return distanceToRide - ride.time()
+            # def getWeight(self, ride: "Ride", timeLeft: int) -> int:
+            #     if self.canFinishRide(ride, timeLeft):
+            #         return 0
 
+            #     distanceToRide = self.currentLocation.distanceTo(ride.startLocation)
 
-    def move(self):
-        if (self.drivingQueue != []):
-            nextInstruction = self.drivingQueue[0]
-            if(nextInstruction == Direction.NORTH):
-                self.moveNorth()
-            if(nextInstruction == Direction.EAST):
-                self.moveEast()
-            if(nextInstruction == Direction.SOUTH):
-                self.moveSouth()
-            if(nextInstruction == Direction.WEST):
-                self.moveWest()
+            #     return distanceToRide - ride.time()
 
-    def moveNorth(self):
-        self.currentLocation.row += 1
+            # def move(self):
+            #     if (self.drivingQueue != []):
+            #         nextInstruction = self.drivingQueue[0]
+            #         if(nextInstruction == Direction.NORTH):
+            #             self.moveNorth()
+            #         if(nextInstruction == Direction.EAST):
+            #             self.moveEast()
+            #         if(nextInstruction == Direction.SOUTH):
+            #             self.moveSouth()
+            #         if(nextInstruction == Direction.WEST):
+            #             self.moveWest()
 
-    def moveEast(self):
-        self.currentLocation.column += 1
+            # def moveNorth(self):
+            #     self.currentLocation.row += 1
 
-    def moveSouth(self):
-        self.currentLocation.row -= 1
+            # def moveEast(self):
+            #     self.currentLocation.column += 1
 
-    def moveWest(self):
-        self.currentLocation.column -= 1
+            # def moveSouth(self):
+            #     self.currentLocation.row -= 1
+
+            # def moveWest(self):
+            #     self.currentLocation.column -= 1
