@@ -1,4 +1,5 @@
-import Ride, Intersection
+from src.Ride import Ride
+from src.Intersection import Intersection
 import os.path
 
 # Read the input from the input file

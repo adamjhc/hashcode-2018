@@ -4,8 +4,8 @@ class Ride():
     start_time = None
     end_time = None
 
-    def __init__(self, start_location, end_location, start_time, finish_time):
+    def __init__(self, start_location, end_location, start_time, end_time):
         self.start_location = start_location
         self.end_location = end_location
         self.start_time = start_time
-        self.end_time = end_Time
+        self.end_time = end_time

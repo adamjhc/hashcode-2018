@@ -3,5 +3,10 @@
 import sys
 from src.ImportDataSet import read_input
 
-if len(sys.argv) > 0:
-    R, C, F, N, B, T, rides = read_input(sys.argv[0])
+if len(sys.argv) < 2:
+    print("Usage: __main__.py <dataset> where <dataset> is the path to the desired data set")
+    sys.exit()
+
+R, C, F, N, B, T, rides = read_input(sys.argv[1])
+
+print("{} rows, {} columns, {} vehicles, {} rides, {} starting on time bonus, {} time steps.".format(R, C, F, N, B, T))
