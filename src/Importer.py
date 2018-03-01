@@ -35,4 +35,5 @@ class Importer:
 
                 return R, C, F, N, B, T, rides
         else:
+            print("Error: File not found")
             return
