@@ -1,18 +1,18 @@
 from src.Direction import Direction
 from src.Ride import Ride
-from src.Location import Location
+from src.Intersection import Intersection
 
 class Car(object):
     """two """
-    currentLocation: "Location" = None
+    currentLocation: "Intersection" = None
     drivingQueue: list = []
     id: int = None
 
-    def __init__(self, location: "Location", id: int):
+    def __init__(self, location: "Intersection", id: int):
         self.currentLocation = location
         self.id = id
 
-    def sendCarToLocation(self, location: "Location"):
+    def sendCarToLocation(self, location: "Intersection"):
         xMovement: int = location.row - self.currentLocation.row
         yMovement: int = location.column - self.currentLocation.column
 
@@ -29,7 +29,7 @@ class Car(object):
             for i in yMovement:
                 self.drivingQueue.append(3)
 
-    def canFinishRide(self, ride "Ride", timeLeft: int) -> int:
+    def canFinishRide(self, ride: "Ride", timeLeft: int) -> int:
         distance: int = self.currentLocation.distanceTo(ride.startLocation)
 
         frames: int = (distance + ride.time()) - timeLeft
