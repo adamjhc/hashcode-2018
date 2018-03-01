@@ -3,7 +3,7 @@ from src.Intersection import Intersection
 import os.path
 
 # Read the input from the input file
-def read_input(filename):
+def importDataSet(filename):
     if os.path.isfile(filename):
         with open(filename) as f:
             content = f.readlines()
