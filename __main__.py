@@ -11,4 +11,5 @@ importer = Importer(sys.argv[1])
 
 rows, columns, vehicles, numRides, timelyBonus, timeSteps, rides = importer.importDataSet()
 
-print("{} rows, {} columns, {} vehicles, {} rides, {} starting on time bonus, {} time steps.".format(rows, columns, vehicles, numRides, timelyBonus, timeSteps))
+print("{} rows, {} columns, {} vehicles, {} rides, {} starting on time bonus, {} time steps.".format(
+    rows, columns, vehicles, numRides, timelyBonus, timeSteps))

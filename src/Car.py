@@ -45,6 +45,9 @@ class Car(object):
         return distanceToRide - timeForRide
 
 
+<< << << < HEAD
+== == == =
+
     def move():
         if (self.drivingQueue != []):
             # drive north
@@ -62,3 +65,4 @@ class Car(object):
             # drive west
             if(self.drivingQueue[0] == 4):
                 self.coordinates.row = self.coordinates.row - 1
+>>>>>> > 267643da3aa1347c2bae57f174acbab9a4c83a54

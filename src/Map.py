@@ -1,11 +1,13 @@
-class Map(object):
+class Map():
     """docstring for Map. take array containing height and width [h,y], it will also take a list of cars """
-    heightAndWidth = None
+    height = None
+    width = None
     carList = None
     timeFrame = 0
-    def __init__(self, heightAndWidth):
-        self.heightAndWidth = heightAndWidth
 
+    def __init__(self, height, width):
+        self.height = height
+        self.width = width
 
     def nextTimeFrame():
         self.timeFrame += 1
