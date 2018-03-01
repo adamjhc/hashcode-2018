@@ -49,11 +49,11 @@ class Car(object):
         if (self.drivingQueue != []):
             # drive north
             if(self.drivingQueue[0] == 1):
-                self.coordinates.column = self.coordinates.column + 1
+                self.coordinates.row = self.coordinates.row + 1
 
             # drive east
             if(self.drivingQueue[0] == 2):
-                self.coordinates.row = self.coordinates.row + 1
+                self.coordinates.column = self.coordinates.column + 1
 
             # drive south
             if(self.drivingQueue[0] == 3):

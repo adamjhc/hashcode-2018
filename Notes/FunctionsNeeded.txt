@@ -1,0 +1,2 @@
+getAvailableCars() in Cars Class:
+  returns an array of the cars that aren't in a job
