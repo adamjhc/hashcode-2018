@@ -17,16 +17,16 @@ class Car(object):
         yMovement: int = location.column - self.currentLocation.column
 
         if(xMovement > 0):
-            for i in xMovement:
+            for _ in xMovement:
                 self.drivingQueue.append(2)
         if(xMovement < 0):
-            for i in xMovement:
+            for _ in xMovement:
                 self.drivingQueue.append(4)
         if(yMovement > 0):
-            for i in yMovement:
+            for _ in yMovement:
                 self.drivingQueue.append(1)
         if(yMovement > 0):
-            for i in yMovement:
+            for _ in yMovement:
                 self.drivingQueue.append(3)
 
     def canFinishRide(self, ride: "Ride", timeLeft: int) -> int:
