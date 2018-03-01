@@ -20,13 +20,16 @@ class Importer:
 
                 lines = iter(content)
                 next(lines)
+                counter: int = 0
                 for line in lines:
                     a, b, x, y, s, f = list(map(int, line.split(" ")))
 
                     start = Intersection(a, b)
                     end = Intersection(x, y)
-                    ride = Ride(start, end, s, f)
+                    ride = Ride(counter, start, end, s, f)
                     rides.append(ride)
+
+                    counter =+ 1
 
                 file.close()
 
