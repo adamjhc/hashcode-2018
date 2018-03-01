@@ -1,3 +1,5 @@
+from src.Direction import Direction
+
 class Car(object):
     """two """
     currentLocation = None
@@ -13,16 +15,16 @@ class Car(object):
         yMovement = endLocation.column - self.currentLocation.column
         if(xMovement > 0):
             for i in xMovement:
-                self.drivingQueue.append(2)
+                self.drivingQueue.append(Direction.EAST)
         if(xMovement < 0):
             for i in xMovement:
-                self.drivingQueue.append(4)
+                self.drivingQueue.append(Direction.WEST)
         if(yMovement > 0):
             for i in yMovement:
-                self.drivingQueue.append(1)
+                self.drivingQueue.append(Direction.NORTH)
         if(yMovement > 0):
             for i in yMovement:
-                self.drivingQueue.append(3)
+                self.drivingQueue.append(Direction.SOUTH)
 
     def getDistanceToIntersection(self, intersection):
         return abs(location.row - intersection.row) + abs(location.column - intersection.column)
@@ -47,18 +49,24 @@ class Car(object):
 
     def move():
         if (self.drivingQueue != []):
-            # drive north
-            if(self.drivingQueue[0] == 1):
-                self.coordinates.column = self.coordinates.column + 1
+            nextInstruction = self.drivingQueue[0]
+            if(snextInstruction == Direction.NORTH):
+                moveNorth()
+            if(nextInstruction == Direction.EAST):
+                moveEast()
+            if(nextInstruction == Direction.SOUTH):
+                moveSouth()
+            if(nextInstruction == Direction.WEST):
+                moveWest()
 
-            # drive east
-            if(self.drivingQueue[0] == 2):
-                self.coordinates.row = self.coordinates.row + 1
+    def moveNorth():
+        self.currentLocation.row += 1
 
-            # drive south
-            if(self.drivingQueue[0] == 3):
-                self.coordinates.column = self.coordinates.column - 1
+    def moveEast():
+        self.currentLocation.column += 1
+    
+    def moveSouth():
+        self.currentLocation.row -= 1
 
-            # drive west
-            if(self.drivingQueue[0] == 4):
-                self.coordinates.row = self.coordinates.row - 1
+    def moveWest():
+        self.currentLocation.column -= 1
