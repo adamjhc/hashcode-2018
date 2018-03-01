@@ -9,24 +9,23 @@ class Car():
     previousRides = []
     timeWhenAvailable = None
 
-    def __init__(self, id: int):
+    def __init__(self):
         self.location = Intersection(0, 0)
-        self.id = id
 
     def isAvailable(self):
-        return ride == None
+        return self.ride == None
 
     def addRide(self, ride, currentTime):
         self.ride = ride
-        location = ride.endLocation
+        self.location = ride.endLocation
 
         distance: int = self.location.distanceTo(ride.startLocation)
         return currentTime + distance + ride.time()
 
     def update(self, currentTime, nextRide):
         if currentTime == self.timeWhenAvailable:
-            previousRides.append(ride.id)
-            self.addRide(nextRide)
+            self.previousRides.append(self.ride.id)
+            self.addRide(nextRide, currentTime)
 
             # def canFinishRide(self, ride: "Ride", timeLeft: int) -> int:
             #     distance: int = self.currentLocation.distanceTo(ride.startLocation)
@@ -70,7 +69,7 @@ class Car():
     def getSubmissionLine(self) -> str:
         line: str = str(len(self.previousRides))
 
-        for ride in self.previousRides:
-            line += " {:d}".format(ride.id)
+        for rideId in self.previousRides:
+            line += " {:d}".format(rideId)
 
         return line

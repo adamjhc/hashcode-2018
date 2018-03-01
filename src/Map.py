@@ -10,7 +10,7 @@ class Map():
     def __init__(self, heightAndWidth, numberOfCars):
         self.heightAndWidth = heightAndWidth
         for _ in range(numberOfCars):
-            self.carList.append(Car(Intersection(0,0), 1))
+            self.carList.append(Car())
 
     def nextTimeFrame(self):
         self.timeFrame += 1
