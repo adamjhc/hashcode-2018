@@ -42,13 +42,13 @@ for infile in datasets.keys():
 
     rows, columns, numCars, numRides, timelyBonus, timeSteps, rides = importer.importDataSet()
 
-    print("""{} rows
-    {} columns
-    {} cars
-    {} rides
-    {} starting on time bonus
-    {} time steps
-    """.format(rows, columns, numCars, numRides, timelyBonus, timeSteps))
+    print("""Metadata:
+\t{} rows
+\t{} columns
+\t{} cars
+\t{} rides
+\t{} starting on time bonus
+\t{} time steps""".format(rows, columns, numCars, numRides, timelyBonus, timeSteps))
 
     rides.sort(key=lambda ride: ride.startTime, reverse=False)
 
