@@ -29,6 +29,11 @@ cars = []
 for car in range(numCars):
     cars.append(Car())
 
+i = 0
 for frame in range(timeSteps):
-    for i, car in enumerate(cars):
-        car.update(frame, rides[i])
+    for car in cars:
+        if car.update(frame, rides[i]):
+            i += 1
+
+for car in cars:
+    print(car.previousRides)

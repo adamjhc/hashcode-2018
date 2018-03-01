@@ -7,7 +7,7 @@ class Car():
     location: "Intersection" = None
     ride = None
     previousRides = []
-    timeWhenAvailable = None
+    timeWhenAvailable = 0
 
     def __init__(self):
         self.location = Intersection(0, 0)
@@ -20,51 +20,59 @@ class Car():
         self.location = ride.endLocation
 
         distance: int = self.location.distanceTo(ride.startLocation)
-        return currentTime + distance + ride.time()
+        self.timeWhenAvailable = currentTime + distance + ride.time()
 
     def update(self, currentTime, nextRide):
         if currentTime == self.timeWhenAvailable:
-            self.previousRides.append(self.ride.id)
+            try:
+
+                self.previousRides.append(self.ride.id)
+            except:
+                pass
+
             self.addRide(nextRide, currentTime)
+            return True
 
-            # def canFinishRide(self, ride: "Ride", timeLeft: int) -> int:
-            #     distance: int = self.currentLocation.distanceTo(ride.startLocation)
+        return False
 
-            #     frames: int = (distance + ride.time()) - timeLeft
+        # def canFinishRide(self, ride: "Ride", timeLeft: int) -> int:
+        #     distance: int = self.currentLocation.distanceTo(ride.startLocation)
 
-            #     return frames > 0
+        #     frames: int = (distance + ride.time()) - timeLeft
 
-            # def getWeight(self, ride: "Ride", timeLeft: int) -> int:
-            #     if self.canFinishRide(ride, timeLeft):
-            #         return 0
+        #     return frames > 0
 
-            #     distanceToRide = self.currentLocation.distanceTo(ride.startLocation)
+        # def getWeight(self, ride: "Ride", timeLeft: int) -> int:
+        #     if self.canFinishRide(ride, timeLeft):
+        #         return 0
 
-            #     return distanceToRide - ride.time()
+        #     distanceToRide = self.currentLocation.distanceTo(ride.startLocation)
 
-            # def move(self):
-            #     if (self.drivingQueue != []):
-            #         nextInstruction = self.drivingQueue[0]
-            #         if(nextInstruction == Direction.NORTH):
-            #             self.moveNorth()
-            #         if(nextInstruction == Direction.EAST):
-            #             self.moveEast()
-            #         if(nextInstruction == Direction.SOUTH):
-            #             self.moveSouth()
-            #         if(nextInstruction == Direction.WEST):
-            #             self.moveWest()
+        #     return distanceToRide - ride.time()
 
-            # def moveNorth(self):
-            #     self.currentLocation.row += 1
+        # def move(self):
+        #     if (self.drivingQueue != []):
+        #         nextInstruction = self.drivingQueue[0]
+        #         if(nextInstruction == Direction.NORTH):
+        #             self.moveNorth()
+        #         if(nextInstruction == Direction.EAST):
+        #             self.moveEast()
+        #         if(nextInstruction == Direction.SOUTH):
+        #             self.moveSouth()
+        #         if(nextInstruction == Direction.WEST):
+        #             self.moveWest()
 
-            # def moveEast(self):
-            #     self.currentLocation.column += 1
+        # def moveNorth(self):
+        #     self.currentLocation.row += 1
 
-            # def moveSouth(self):
-            #     self.currentLocation.row -= 1
+        # def moveEast(self):
+        #     self.currentLocation.column += 1
 
-            # def moveWest(self):
-            #     self.currentLocation.column -= 1
+        # def moveSouth(self):
+        #     self.currentLocation.row -= 1
+
+        # def moveWest(self):
+        #     self.currentLocation.column -= 1
 
     def getSubmissionLine(self) -> str:
         line: str = str(len(self.previousRides))
