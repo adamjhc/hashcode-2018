@@ -9,7 +9,7 @@ class Importer:
         self.filename = filename
 
     # Read the input from the input file
-    def importDataSet(self):
+    def importDataSet(self) -> (int, int, int, int, int, int, list):
         if os.path.isfile(self.filename):
             with open(self.filename, 'r') as file:
                 content = file.readlines()

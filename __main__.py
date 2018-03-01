@@ -3,11 +3,12 @@
 import sys
 
 from src.Importer import Importer
-from src.Ride import Ride
+from src.Exporter import Exporter
 from src.Car import Car
+from src.Map import Map
 
-if len(sys.argv) < 2:
-    print("Usage: __main__.py <dataset> where <dataset> is the path to the desired data set")
+if len(sys.argv) < 3:
+    print("Usage: __main__.py <dataset> <outfile> where <dataset> is the path to the desired data set and <outfile> is the path to the output")
     sys.exit()
 
 importer = Importer(sys.argv[1])
@@ -39,3 +40,7 @@ for car in range(numCars):
 for frame in range(timeSteps):
     for i, car in enumerate(cars):
         car.update(frame, rides[i])
+
+exporter = Exporter(sys.argv[2])
+exporter.setVehicles(cars)
+exporter.exportSubmission()
