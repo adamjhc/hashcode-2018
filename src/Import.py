@@ -8,14 +8,14 @@ def importDataSet(filename):
         with open(filename) as f:
             content = f.readlines()
 
-            R, C, F, N, B, T = content[0].split(" ")
+            R, C, F, N, B, T = list(map(int, content[0].split(" ")))
 
             rides = []
 
             lines = iter(content)
             next(lines)
             for line in lines:
-                a, b, x, y, s, f = line.split(" ")
+                a, b, x, y, s, f = list(map(int, line.split(" ")))
 
                 start = Intersection(a, b)
                 end = Intersection(x, y)
