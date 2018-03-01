@@ -13,7 +13,7 @@ class Exporter:
     # Export the output to a file
     def exportSubmission(self):
         if len(self.vehicles) > 0:
-            with open(self.filename, 'w+') as file:
+            with open(self.filename, 'w') as file:
                 print("Outputting to {}".format(self.filename))
                 for v in self.vehicles:
                     file.write("{}\n".format(v.getSubmissionLine()))
