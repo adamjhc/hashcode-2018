@@ -1,12 +1,14 @@
 #!/bin/env python3
 
 import sys
-from src.Import import importDataSet
+from src.Importer import Importer
 
 if len(sys.argv) < 2:
     print("Usage: __main__.py <dataset> where <dataset> is the path to the desired data set")
     sys.exit()
 
-rows, columns, vehicles, rides, timelyBonus, timeSteps, rides = importDataSet(sys.argv[1])
+importer = Importer(sys.argv[1])
 
-print("{} rows, {} columns, {} vehicles, {} rides, {} starting on time bonus, {} time steps.".format(rows, columns, vehicles, rides, timelyBonus, timeSteps))
+rows, columns, vehicles, numRides, timelyBonus, timeSteps, rides = importer.importDataSet()
+
+print("{} rows, {} columns, {} vehicles, {} rides, {} starting on time bonus, {} time steps.".format(rows, columns, vehicles, numRides, timelyBonus, timeSteps))
