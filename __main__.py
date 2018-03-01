@@ -32,7 +32,9 @@ for car in range(numCars):
 
 i = 0
 for frame in range(timeSteps):
-    for car in cars:
+    for index, car in enumerate(cars):
+        if i > len(rides) - 1:
+            break
         if car.update(frame, rides[i]):
             i += 1
 

@@ -1,6 +1,6 @@
 class Intersection():
-    row: int = None
-    column: int = None
+    row: int
+    column: int
 
     def __init__(self, row: int, column: int):
         self.row = row

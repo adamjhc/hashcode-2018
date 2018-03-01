@@ -3,7 +3,7 @@ from src.Intersection import Intersection
 import os.path
 
 class Importer:
-    filename = None
+    filename: str
 
     def __init__(self, filename : str):
         self.filename = filename

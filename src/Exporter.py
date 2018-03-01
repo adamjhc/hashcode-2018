@@ -1,11 +1,12 @@
 import os.path
 
 class Exporter:
-    filename: str = None
-    vehicles: list = []
+    filename: str
+    vehicles: list
 
     def __init__(self, filename: str):
         self.filename = filename
+        self.vehicles = []
 
     def setVehicles(self, vehicles: list):
         self.vehicles = vehicles

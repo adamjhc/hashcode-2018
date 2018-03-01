@@ -1,9 +1,9 @@
 class Ride():
-    id: int = None
-    startLocation: "Intersection" = None
-    endLocation: "Intersection" = None
-    startTime: int = None
-    endTime: int = None
+    id: int
+    startLocation: "Intersection"
+    endLocation: "Intersection"
+    startTime: int
+    endTime: int
 
     def __init__(self, id: int, startLocation: int, endLocation: int, startTime: int, endTime: int) -> None:
         assert startTime >= 0

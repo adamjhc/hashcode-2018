@@ -2,20 +2,22 @@ from src.Direction import Direction
 from src.Ride import Ride
 from src.Intersection import Intersection
 
-
 class Car():
-    location: "Intersection" = None
-    ride = None
-    previousRides = []
-    timeWhenAvailable = 0
+    location: "Intersection"
+    ride: "Ride"
+    previousRides: list
+    timeWhenAvailable: int
 
     def __init__(self):
         self.location = Intersection(0, 0)
+        self.ride = None
+        self.previousRides = []
+        self.timeWhenAvailable = 0
 
-    def isAvailable(self):
+    def isAvailable(self) -> bool:
         return self.ride == None
 
-    def addRide(self, ride, currentTime):
+    def addRide(self, ride: "Ride", currentTime: int) -> None:
         self.ride = ride
         self.location = ride.endLocation
 
