@@ -44,7 +44,9 @@ i = 0
 for frame in range(timeSteps):
     for car in range(cars):
         if car.isAvailable():
-            car.addRide(sortedRides[i++])
+            car.addRide(sortedRides[i])
+            i += 1
         else:
             if currentTime == car.timeWhenAvailable:
-                car.update(frame, sortedRides[i++])
+                car.update(frame, sortedRides[i])
+                i += 1
