@@ -10,8 +10,8 @@ class Car():
         self.previousRides: List[Ride] = []
         self.timeWhenAvailable: int = 0
 
-    def isAvailable(self) -> bool:
-        return self.ride == None
+    def isAvailable(self, currentTime) -> bool:
+        return currentTime == 0 or currentTime == self.timeWhenAvailable
 
     def addRide(self, ride: "Ride", currentTime: int) -> None:
         self.ride = ride
@@ -23,19 +23,12 @@ class Car():
         else:
             self.timeWhenAvailable = currentTime
 
-    def update(self, currentTime: int, nextRide: "Ride") -> bool:
-        # Take the ride if we are in the first time frame
-        if currentTime == 0:
-            self.addRide(nextRide, currentTime)
-            return True
-
-        if currentTime == self.timeWhenAvailable:
-            self.previousRides.append(self.ride)
+    def update(self, currentTime: int, nextRide: "Ride") -> None:
+        if self.isAvailable(currentTime):
+            if self.ride is not None:
+                self.previousRides.append(self.ride)
 
             self.addRide(nextRide, currentTime)
-            return True
-
-        return False
 
     def getSubmissionLine(self) -> str:
         line: str = str(len(self.previousRides))

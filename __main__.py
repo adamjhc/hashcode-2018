@@ -60,15 +60,31 @@ for infile in datasets.keys():
     i: int = 0
     for frame in range(timeSteps):
         for index, car in enumerate(cars):
-            if i < len(rides):
-                nextRide: "Ride" = rides[i]
-            else:
-                nextRide: "Ride" = None
+            if car.isAvailable(frame):
+                currentRide: "Ride" = car.ride
 
-            currentRide: "Ride" = car.ride
+                if i < len(rides):
+                    j: int = 0
+                    nextRide: "Ride" = rides[i]
 
-            if car.update(frame, nextRide):
-                i += 1
+                    # Don't take a ride which the car cannot complete in time
+                    while frame + nextRide.distance() > timeSteps or frame + nextRide.distance() > nextRide.endTime:
+                        j += 1
+                        if i + j < len(rides):
+                            nextRide: "Ride" = rides[i+j]
+                        else:
+                            nextRide: "Ride" = None
+                            break
+
+                    if nextRide is not None:
+                        if j > 0:
+                            # swap rides[i] with rides[i+j]
+                            swapRide: "Ride" = rides[i]
+                            rides[i] = rides[i+j]
+                            rides[i+j] = swapRide
+                        i += 1
+
+                    car.update(frame, nextRide)
 
                 # Scoring
                 if currentRide is not None and frame < currentRide.endTime:
