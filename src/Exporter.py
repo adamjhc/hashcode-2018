@@ -1,12 +1,11 @@
 import os.path
+from typing import List
+from src.Car import Car
 
 class Exporter:
-    filename: str
-    vehicles: list
-
     def __init__(self, filename: str) -> None:
-        self.filename = filename
-        self.vehicles = []
+        self.filename: str = filename
+        self.vehicles: List[Car] = []
 
     def setVehicles(self, vehicles: list) -> None:
         self.vehicles = vehicles

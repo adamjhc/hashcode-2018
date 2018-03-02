@@ -4,16 +4,11 @@ from src.Ride import Ride
 from src.Intersection import Intersection
 
 class Car():
-    location: "Intersection"
-    ride: "Ride"
-    previousRides: List[int]
-    timeWhenAvailable: int
-
     def __init__(self):
-        self.location = Intersection(0, 0)
-        self.ride = None
-        self.previousRides = []
-        self.timeWhenAvailable = 0
+        self.location: "Intersection" = Intersection(0, 0)
+        self.ride: "Ride" = None
+        self.previousRides: List[int] = []
+        self.timeWhenAvailable: int = 0
 
     def isAvailable(self) -> bool:
         return self.ride == None

@@ -4,10 +4,8 @@ from src.Intersection import Intersection
 import os.path
 
 class Importer:
-    filename: str
-
     def __init__(self, filename : str) -> None:
-        self.filename = filename
+        self.filename: str = filename
 
     # Read the input from the input file
     def importDataSet(self) -> Tuple[int, int, int, int, int, int, list]:
