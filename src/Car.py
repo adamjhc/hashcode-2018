@@ -7,7 +7,7 @@ class Car():
     def __init__(self):
         self.location: "Intersection" = Intersection(0, 0)
         self.ride: "Ride" = None
-        self.previousRides: List[int] = []
+        self.previousRides: List[Ride] = []
         self.timeWhenAvailable: int = 0
 
     def isAvailable(self) -> bool:
@@ -30,8 +30,7 @@ class Car():
             return True
 
         if currentTime == self.timeWhenAvailable:
-            self.previousRides.append(self.ride.id)
-
+            self.previousRides.append(self.ride)
 
             self.addRide(nextRide, currentTime)
             return True
@@ -41,7 +40,7 @@ class Car():
     def getSubmissionLine(self) -> str:
         line: str = str(len(self.previousRides))
 
-        for rideId in self.previousRides:
-            line += " {:d}".format(rideId)
+        for ride in self.previousRides:
+            line += " {:d}".format(ride.id)
 
         return line
