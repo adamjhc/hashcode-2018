@@ -60,7 +60,7 @@ for infile in datasets.keys():
     i: int = 0
     for frame in range(timeSteps):
         progress: int = int(100 * (frame+1) / int(timeSteps))
-        sys.stdout.write("\r{:d}% frame {:d} of {:d}".format(progress, frame, (timeSteps-1)))
+        sys.stdout.write("\r{:d}% frame {:d} of {:d}. {:d} rides remaining.".format(progress, frame, (timeSteps-1), (len(rides)-i)))
         sys.stdout.flush()
 
         # Number of cars which are free but don't want to pick a job in this frame
@@ -117,6 +117,10 @@ for infile in datasets.keys():
 
                 car.update(frame, nextRide)
 
+        if i >= len(rides):
+            # No more rides to pick from
+            print("\nTerminating as no more rides to pick from.")
+            break
         if carsWaiting >= numCars:
             # All cars are available but haven't picked a ride
             # Therefore no more rides will ever be picked
