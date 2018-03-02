@@ -56,15 +56,27 @@ for infile in datasets.keys():
 
     cars: List[Car] = [Car() for _ in range(numCars)]
 
-
+    score: int = 0
     i: int = 0
     for frame in range(timeSteps):
         for index, car in enumerate(cars):
-            if i > len(rides) - 1:
-                break
-            if car.update(frame, rides[i]):
+            if i < len(rides):
+                nextRide: "Ride" = rides[i]
+            else:
+                nextRide: "Ride" = None
+
+            currentRide: "Ride" = car.ride
+
+            if car.update(frame, nextRide):
                 i += 1
 
+                # Scoring
+                if currentRide is not None and frame < currentRide.endTime:
+                    score += currentRide.distance()
+                    if frame - currentRide.distance() == currentRide.startTime:
+                        score += timelyBonus
+
+    print("Score: {:d}".format(score))
     print("Outputting to {}".format(outfile))
     exporter = Exporter(outfile)
     exporter.setVehicles(cars)

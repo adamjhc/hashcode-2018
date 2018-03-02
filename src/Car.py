@@ -15,10 +15,13 @@ class Car():
 
     def addRide(self, ride: "Ride", currentTime: int) -> None:
         self.ride = ride
-        self.location = ride.endLocation
+        if ride is not None:
+            self.location = ride.endLocation
 
-        distance: int = self.location.distanceTo(ride.startLocation)
-        self.timeWhenAvailable = currentTime + distance + ride.distance()
+            distance: int = self.location.distanceTo(ride.startLocation)
+            self.timeWhenAvailable = currentTime + distance + ride.distance()
+        else:
+            self.timeWhenAvailable = currentTime
 
     def update(self, currentTime: int, nextRide: "Ride") -> bool:
         # Take the ride if we are in the first time frame

@@ -4,6 +4,7 @@ class Ride():
     def __init__(self, id: int, startLocation: "Intersection", endLocation: "Intersection", startTime: int, endTime: int) -> None:
         assert startTime >= 0
         assert endTime >= 0
+        assert startTime < endTime
 
         self.id: int = id
         self.startLocation: "Intersection" = startLocation
