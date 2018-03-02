@@ -66,6 +66,13 @@ for infile in datasets.keys():
 
             currentRide: "Ride" = car.ride
 
+            # Scoring
+            if currentRide is not None and frame < currentRide.endTime:
+                score += currentRide.distance()
+                if frame - currentRide.distance() == currentRide.startTime:
+                    score += timelyBonus
+
+            # New ride assignment
             if i < len(rides):
                 j: int = 0
                 nextRide: "Ride" = rides[i]
@@ -88,12 +95,6 @@ for infile in datasets.keys():
                     i += 1
 
                 car.update(frame, nextRide)
-
-            # Scoring
-            if currentRide is not None and frame < currentRide.endTime:
-                score += currentRide.distance()
-                if frame - currentRide.distance() == currentRide.startTime:
-                    score += timelyBonus
 
     print("Score: {:d}".format(score))
     print("Outputting to {}".format(outfile))
