@@ -2,7 +2,7 @@ class Intersection():
     row: int
     column: int
 
-    def __init__(self, row: int, column: int):
+    def __init__(self, row: int, column: int) -> None:
         self.row = row
         self.column = column
 

@@ -1,3 +1,5 @@
+from src.Intersection import Intersection
+
 class Ride():
     id: int
     startLocation: "Intersection"
@@ -5,7 +7,7 @@ class Ride():
     startTime: int
     endTime: int
 
-    def __init__(self, id: int, startLocation: int, endLocation: int, startTime: int, endTime: int) -> None:
+    def __init__(self, id: int, startLocation: "Intersection", endLocation: "Intersection", startTime: int, endTime: int) -> None:
         assert startTime >= 0
         assert endTime >= 0
 

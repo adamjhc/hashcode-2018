@@ -1,3 +1,4 @@
+from typing import List
 from src.Direction import Direction
 from src.Ride import Ride
 from src.Intersection import Intersection
@@ -5,7 +6,7 @@ from src.Intersection import Intersection
 class Car():
     location: "Intersection"
     ride: "Ride"
-    previousRides: list
+    previousRides: List[int]
     timeWhenAvailable: int
 
     def __init__(self):

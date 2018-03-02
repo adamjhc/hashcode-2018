@@ -1,3 +1,4 @@
+from typing import Tuple
 from src.Ride import Ride
 from src.Intersection import Intersection
 import os.path
@@ -5,11 +6,11 @@ import os.path
 class Importer:
     filename: str
 
-    def __init__(self, filename : str):
+    def __init__(self, filename : str) -> None:
         self.filename = filename
 
     # Read the input from the input file
-    def importDataSet(self) -> (int, int, int, int, int, int, list):
+    def importDataSet(self) -> Tuple[int, int, int, int, int, int, list]:
         if os.path.isfile(self.filename):
             with open(self.filename, 'r') as file:
                 content = file.readlines()
@@ -36,4 +37,4 @@ class Importer:
                 return R, C, F, N, B, T, rides
         else:
             print("Error: File not found")
-            return
+            raise FileNotFoundError

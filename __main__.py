@@ -9,11 +9,13 @@ where
 """
 
 import sys
+from typing import Dict, List, Tuple
 from src.Importer import Importer
 from src.Exporter import Exporter
 from src.Car import Car
+from src.Ride import Ride
 
-datasets: dict
+datasets: Dict[str, str]
 
 if len(sys.argv) < 3:
     datasets = {
@@ -52,12 +54,10 @@ for infile in datasets.keys():
 
     rides.sort(key=lambda ride: (ride.startTime, ride.distance()), reverse=False)
 
-    cars = []
+    cars: List[Car] = [Car() for _ in range(numCars)]
 
-    for car in range(numCars):
-        cars.append(Car())
 
-    i = 0
+    i: int = 0
     for frame in range(timeSteps):
         for index, car in enumerate(cars):
             if i > len(rides) - 1:

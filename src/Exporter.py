@@ -4,15 +4,15 @@ class Exporter:
     filename: str
     vehicles: list
 
-    def __init__(self, filename: str):
+    def __init__(self, filename: str) -> None:
         self.filename = filename
         self.vehicles = []
 
-    def setVehicles(self, vehicles: list):
+    def setVehicles(self, vehicles: list) -> None:
         self.vehicles = vehicles
 
     # Export the output to a file
-    def exportSubmission(self):
+    def exportSubmission(self) -> None:
         if len(self.vehicles) > 0:
             with open(self.filename, 'w') as file:
                 for v in self.vehicles:
