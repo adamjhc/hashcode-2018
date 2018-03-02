@@ -58,17 +58,15 @@ for infile in datasets.keys():
 
     score: int = 0
     i: int = 0
+    finishedCars: List[int] = []
     for frame in range(timeSteps):
         progress: int = int(100 * (frame+1) / int(timeSteps))
         sys.stdout.write("\r{:d}% frame {:d} of {:d}. {:d} rides remaining.".format(progress, frame, (timeSteps-1), (len(rides)-i)))
         sys.stdout.flush()
 
-        # Number of cars which are free but don't want to pick a job in this frame
-        carsWaiting: int = 0
-
         for index, car in enumerate(cars):
-            if not car.isAvailable(frame):
-                # Nothing to do if the car is in transit
+            if index in finishedCars or not car.isAvailable(frame):
+                # Nothing to do if the car is in transit or finished
                 continue
 
             currentRide: "Ride" = car.ride
@@ -113,7 +111,7 @@ for infile in datasets.keys():
                         rides[i+j] = swapRide
                     i += 1
                 else:
-                    carsWaiting += 1
+                    finishedCars.append(index)
 
                 car.update(frame, nextRide)
 
@@ -121,7 +119,7 @@ for infile in datasets.keys():
             # No more rides to pick from
             print("\nTerminating as no more rides to pick from.")
             break
-        if carsWaiting >= numCars:
+        if len(finishedCars) >= numCars:
             # All cars are available but haven't picked a ride
             # Therefore no more rides will ever be picked
             print("\nTerminating as all remaining jobs have been rejected by all cars.")
