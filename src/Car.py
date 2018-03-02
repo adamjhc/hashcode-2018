@@ -11,15 +11,15 @@ class Car():
         self.timeWhenAvailable: int = 0
 
     def isAvailable(self, currentTime) -> bool:
-        return currentTime == 0 or currentTime == self.timeWhenAvailable
+        return currentTime == 0 or currentTime >= self.timeWhenAvailable
 
     def addRide(self, ride: "Ride", currentTime: int) -> None:
         self.ride = ride
         if ride is not None:
-            self.location = ride.endLocation
-
             distance: int = self.location.distanceTo(ride.startLocation)
             self.timeWhenAvailable = currentTime + distance + ride.distance()
+
+            self.location = ride.endLocation
         else:
             self.timeWhenAvailable = currentTime
 
@@ -37,3 +37,6 @@ class Car():
             line += " {:d}".format(ride.id)
 
         return line
+
+    def distanceTo(self, location: "Intersection") -> int:
+        return self.location.distanceTo(location)
